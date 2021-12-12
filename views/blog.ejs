@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="urf-8" />
+    <title></title>
+</head>
+
+<body>
+    <%- include layout %>
+        <div class="container">
+            <h2 align="center">รายงานการแจ้งซ่อม</h2>
+            <a href="/blog/add">แจ้งซ่อม</a>
+        </div>
+
+        <div class="card-body">
+            <% if(data.length) { %>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">รายงานปัญหา</th>
+                            <th scope="col">ชื่อ-นามสกุล</th>
+                            <th scope="col">ห้อง</th>
+                            <th scope="col">ปัญหาที่เกิดขึ้น</th>
+                            <th width="200px">แก้ไข/ลบ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for(let i=0; i < data.length; i++) { %>
+                            <tr>
+                                <th scope="row">
+                                    <%= data[i].id %>
+                                </th>
+                                <td>
+                                    <%= data[i].name %>
+                                </td>
+                                <td>
+                                    <%= data[i].room %>
+                                </td>
+                                <td>
+                                    <%= data[i].detail %>
+                                </td>
+                                <td>
+                                    <a href="../blog/edit/<%= data[i]._id %>" class="btn btn-success edit">Edit</a>
+                                    <a href="../blog/delete/<%= data[i]._id %>" onclick="return alert('Are you sure?')"
+                                        class="btn btn-danger delete">Delete</a>
+                                </td>
+                            </tr>
+                            <% } %>
+                    </tbody>
+                </table>
+                <% } %>
+
+                    <!-- if result is empty -->
+                    <% if(!data.length) { %>
+                        <p class="text-center">ไม่พบข้อมูลรายงานปัญหา</p>
+                        <% } %>
+        </div>
+
+</body>
+
+</html>

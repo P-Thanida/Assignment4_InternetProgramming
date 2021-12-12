@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="urf-8">
+  <title></title>
+
+</head>
+
+<body>
+  <%- include layout %>
+    <div class="container">
+      <h2 align="center">แก้ไขปัญหา</h2>
+      <%- messages() %>
+
+        <% if(locals.errors) { %>
+          <ul class="alert alert-danger">
+            <% Object.values(errors).forEach(function (error) { %>
+              <li>
+                <%= error.msg %>
+              </li>
+              <% }) %>
+          </ul>
+          <% } %>
+            <form action="/blog/edit/<%= id %>" method="post">
+              <div class="from-group">
+                <label for="">ชื่อ-นามสกุล</label>
+                <input type="text" name="name" value="<%= name%>" class="form-control">
+              </div>
+              <div class="from-group">
+                <label for="">หอ</label>
+                <select name="dormitory" id="" value="<%= dormitory%>" class="form-control">
+                  <option value="หอ 1">หอ 1,2</option>
+                  <option value="หอ 2">หอ 3</option>
+                  <option value="หอ 3">หอชาย</option>
+                </select>
+              </div>
+              <div class="from-group">
+                <label for="">ห้อง</label>
+                <input type="text" name="room" value="" class="form-control">
+              </div>
+              <div class="from-group">
+                <label for="">ปัญหาที่เกิดขึ้น</label>
+                <input type="text" name="detail" value="<%= detail%>" class="form-control">
+              </div>
+              <br>
+              <div class="form-group">
+                <input type="submit" class="btn btn-info" value="แก้ไข">
+              </div>
+
+            </form>
+    </div>
+    <script>
+      $(function () {
+        $('#messages').addClass('alert alert-success');
+      })
+      CKEDITOR.replace('description');
+    </script>
+
+</body>
+
+</html>
